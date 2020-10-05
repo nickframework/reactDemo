@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        // var hello = React.createElement('h1',{"className":'red',"name":'chn'},"Hello World");
+        // ReactDOM.render(
+        //     hello,document.getElementById('app')
+        // );
+
+        // ReactDOM.render(
+        //     <h1 className='blue'>Hello,babel</h1>,
+        //     document.getElementById('app')
+        // );
+
+        // var name = 'chn';
+        // var ele = <h1 className='red'>Hello,{name}</h1>;
+        // ReactDOM.render(
+        //     ele,
+        //     document.getElementById('app')
+        // );
+
+        // var date = new Date().toLocaleString();
+        //     var ele = <div>
+        //         <h1>Hello,CHN</h1>
+        //         <h2>现在是: {date}</h2>
+        //     </div>;
+        //     ReactDOM.render(ele, document.getElementById('app'));
+
+        function tick(){
+            var date = new Date().toLocaleString();
+            var ele = <div>
+                <h1>Hello,CHN</h1>
+                <h2>现在是: {date}</h2>
+            </div>;
+            ReactDOM.render(ele, document.getElementById('app'));
+        }
+        setInterval(tick, 1000);
+    </script>
+</body>
+</html>
