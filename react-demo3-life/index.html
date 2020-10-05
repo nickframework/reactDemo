@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class HelloChn extends React.Component{
+            constructor(){
+                console.log('初始化阶段');
+                //初始化props
+                super();
+                //初始化状态
+                this.state = {
+                    name: 'chn',
+                    age: 26
+                }
+            }
+            componentWillMount(){
+                console.log('组件加载前');
+            }
+            componentDidMount(){
+                console.log('组件加载后');
+            }
+            //onClick事件的this作用域为button，需要用箭头函数的方式指定
+            updateUser=()=>{
+                //错误语法。不触发事件
+                //this.state = '柴浩楠';
+                this.setState({
+                    name:'柴浩楠',
+                    age:'27'
+                })
+            }
+            shouldComponentUpdate(){
+                console.log('数据是否要更新');
+                return true;
+            }
+            componentWillUpdate(){
+                console.log('数据将要更新');
+            }
+            componentDidUpdate(){
+                console.log('数据更新完成');
+            }
+            render(){
+                console.log('组件加载数据更新');
+                return <div>
+                        <h1>Hello, {this.state.name}</h1>
+                        <p>年龄:{this.state.age}</p>
+                        <button onClick={this.updateUser}>更新数据</button>
+                    </div>
+            }
+        }
+        ReactDOM.render(
+            <HelloChn/>,
+            document.getElementById('app')
+        );
+    </script>
+</body>
+</html>
