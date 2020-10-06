@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 父子传递： 子组件执行父组件定义的方法 -->
+    <script type="text/babel">
+        //子组件通过props属性执行传递过来的update事件
+        function Login(props){
+            return <button onClick={props.update}>Login</button>
+        }
+
+        function Logout(props){
+            return <button onClick={props.update}>Logout</button>
+        }
+
+        class App extends React.Component{
+            state = {
+                isLogin:false
+            }
+            updateUser=()=>{
+                this.setState({
+                    isLogin:!this.state.isLogin
+                })
+            }
+            
+            render(){
+                const {isLogin} = this.state;
+                //可以在Login和Logout组件上自定义事件update,传递父组件的updateUser方法
+                return <div>
+                    {isLogin?<Login update={this.updateUser}/>:<Logout update={this.updateUser}/>}
+                    <button>{isLogin?'登出':'登录'}</button>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <App/>,
+            document.getElementById('app')
+        );
+    </script>
+</body>
+</html>

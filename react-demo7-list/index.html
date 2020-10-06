@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="list"></div>
+    <!-- 列表循环 -->
+    <script type="text/babel">
+        class List extends React.Component{
+            state = {
+                list1:[
+                        {"id":1,"item":"Java"},
+                        {"id":2,"item":"C++"},
+                        {"id":3,"item":"PHP"},
+                        {"id":4,"item":"Node"},
+                        {"id":5,"item":"Python"},
+                    ],
+                list2:[
+                        {"id":6,"item":"C"},
+                        {"id":7,"item":"C#"},
+                        {"id":8,"item":"React"},
+                        {"id":9,"item":"VUE"},
+                        {"id":10,"item":"JavaScript"},
+                    ]
+            }
+            
+            render(){
+                const arr1 = this.state.list1;
+                const arr2 = this.state.list2;
+                const listItem = [];
+                arr1.map((member)=>{
+                    let li = <li key={member.id}>{member.item}</li>;
+                    listItem.push(li);
+                })
+
+                for(var i=0; i<arr2.length; i++){
+                    let li = <li key={arr2[i].id}>{arr2[i].item}</li>
+                    listItem.push(li);
+                }
+                return <ul>{listItem}</ul>
+            }
+        }
+        ReactDOM.render(
+            <List/>,
+            document.getElementById('list')
+        );
+    </script>
+</body>
+</html>

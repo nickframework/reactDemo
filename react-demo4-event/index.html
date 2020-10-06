@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 4种事件定义 -->
+    <script type="text/babel">
+        class HelloChn extends React.Component{
+            //第一种方案
+            // constructor(){
+            //     super();
+            //     this.state = {
+            //         name: 'chn',
+            //         age: 26
+            //     }
+            // }
+            //使用箭头函数
+            // updateUser=()=>{
+            //     this.setState({
+            //         name:'柴浩楠',
+            //         age:'27'
+            //     })
+            // }
+            // render(){
+            //     console.log('组件加载数据更新');
+            //     return <div>
+            //             <h1>Hello, {this.state.name}</h1>
+            //             <p>年龄:{this.state.age}</p>
+            //             <button onClick={this.updateUser}>更新数据</button>
+            //         </div>
+            // }
+
+            //第二种方案
+            // constructor(){
+            //     super();
+            //     this.state = {
+            //         name: 'chn',
+            //         age: 26
+            //     }
+            // 构造方法给updateUser绑定this对象
+            //     this.updateUser = this.updateUser.bind(this);
+            // }
+            // updateUser(){
+            //     this.setState({
+            //         name:'柴浩楠',
+            //         age:'27'
+            //     })
+            // }
+            // render(){
+            //     return <div>
+            //         <h1>Hello, {this.state.name}</h1>
+            //         <p>年龄:{this.state.age}</p>
+            //         <button onClick={this.updateUser}>更新数据</button>
+            //     </div>
+            // }
+
+
+            //第三种方案
+            // constructor(){
+            //     super();
+            //     this.state = {
+            //         name: 'chn',
+            //         age: 26
+            //     }
+            // }
+            // updateUser(){
+            //     this.setState({
+            //         name:'柴浩楠',
+            //         age:'27'
+            //     })
+            // }
+            // render(){
+            //     return <div>
+            //         <h1>Hello, {this.state.name}</h1>
+            //         <p>年龄:{this.state.age}</p>
+            // 事件中使用箭头函数
+            //         <button onClick={()=>this.updateUser}>更新数据</button>
+            //     </div>
+            // }
+
+            //第四种方案
+            constructor(){
+                super();
+                this.state = {
+                    name: 'chn',
+                    age: 26
+                }
+            }
+            updateUser(){
+                this.setState({
+                    name:'柴浩楠',
+                    age:'27'
+                })
+            }
+            //事件中绑定this
+            render(){
+                return <div>
+                    <h1>Hello, {this.state.name}</h1>
+                    <p>年龄:{this.state.age}</p>
+                    <button onClick={this.updateUser.bind(this)}>更新数据</button>
+                </div>
+            }
+        }
+        ReactDOM.render(
+            <HelloChn/>,
+            document.getElementById('app')
+        );
+    </script>
+</body>
+</html>
